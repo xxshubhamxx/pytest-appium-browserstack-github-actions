@@ -63,7 +63,7 @@ jobs:
     - name: Run tests with pytest on BrowserStack
       run: |
         cd android
-        pipenv run browserstack-sdk pytest --log-file=pytest_log.txt --log-cli-level=ERROR
+        pipenv run browserstack-sdk pytest --log-file=pytest_log.txt --log-cli-level=ERROR  --browserstack.app "./WikipediaSample.apk"
 
     # Step 8: Stop BrowserStack Local Tunnel
     - name: Stop BrowserStack Local Tunnel
