@@ -66,9 +66,15 @@ jobs:
         pipenv run browserstack-sdk pytest --log-file=pytest_log.txt --log-cli-level=ERROR \
         --browserstack.app "./WikipediaSample.apk" \
         --browserstack.buildName="Android Release Build" \
+        --browserstack.buildIdentifier="#${BUILD_NUMBER}" \
         --browserstack.projectName="Android Release Regression Testing" \
         --browserstack.logLevel="debug" \
         --browserstack.testObservability="true"
+        --browserstack.ppp="1" \
+        --browserstack.local="false" \
+        --browserstack.localIdentifier="" \
+        --browserstack.rerunTests="false" \
+        --browserstack.automation="true" \
 
     # Step 8: Stop BrowserStack Local Tunnel
     - name: Stop BrowserStack Local Tunnel
