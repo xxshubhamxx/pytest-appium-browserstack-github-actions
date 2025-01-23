@@ -1,5 +1,3 @@
-# This workflow installs Python dependencies, runs lint checks, and executes tests on BrowserStack
-
 name: Python application
 
 on:
@@ -63,18 +61,18 @@ jobs:
     - name: Run tests with pytest on BrowserStack
       run: |
         cd android
-        pipenv run browserstack-sdk pytest --log-file=pytest_log.txt --log-cli-level=ERROR \
-        --browserstack.app "./WikipediaSample.apk" \
-        --browserstack.buildName="Android Release Build" \
-        --browserstack.buildIdentifier="#${BUILD_NUMBER}" \
-        --browserstack.projectName="Android Release Regression Testing" \
-        --browserstack.logLevel="debug" \
-        --browserstack.testObservability="true"
-        --browserstack.ppp="1" \
-        --browserstack.local="false" \
-        --browserstack.localIdentifier="" \
-        --browserstack.rerunTests="false" \
-        --browserstack.automation="true" \
+        BROWSERSTACK_BUILD_NAME="Android Release Build" \
+        BROWSERSTACK_PROJECT_NAME="Android Release Regression Testing" \
+        BROWSERSTACK_LOG_LEVEL="debug" \
+        BROWSERSTACK_TEST_OBSERVABILITY="true" \
+        BROWSERSTACK_APP="./WikipediaSample.apk" \
+        BROWSERSTACK_BUILD_IDENTIFIER="#${{ github.run_number }}" \
+        BROWSERSTACK_PARALLELS_PER_PLATFORM="1" \
+        BROWSERSTACK_LOCAL="false" \
+        BROWSERSTACK_LOCAL_IDENTIFIER="" \
+        BROWSERSTACK_RERUN_TESTS="false" \
+        BROWSERSTACK_AUTOMATION="true" \
+        pipenv run browserstack-sdk pytest --log-file=pytest_log.txt --log-cli-level=ERROR
 
     # Step 8: Stop BrowserStack Local Tunnel
     - name: Stop BrowserStack Local Tunnel
