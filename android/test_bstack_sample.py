@@ -10,6 +10,7 @@ from selenium.webdriver.common.by import By
 @pytest.mark.usefixtures('setWebdriver')
 class TestSample:
 
+    @pytest.mark.ui
     def test_example(self):
         search_element = WebDriverWait(self.driver, 30).until(
             EC.element_to_be_clickable(
