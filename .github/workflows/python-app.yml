@@ -49,7 +49,7 @@ jobs:
       with:
         username: ${{ secrets.BROWSERSTACK_USERNAME }}
         access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
-        build-name: 'REPO_NAME'
+        build-name: 'BUILD_INFO'
         project-name: 'REPO_NAME'
 
     # Step 6: Start BrowserStack Local Tunnel
@@ -63,7 +63,12 @@ jobs:
     - name: Run tests with pytest on BrowserStack
       run: |
         cd android
-        pipenv run browserstack-sdk pytest --log-file=pytest_log.txt --log-cli-level=ERROR  --browserstack.app "./WikipediaSample.apk"
+        pipenv run browserstack-sdk pytest --log-file=pytest_log.txt --log-cli-level=ERROR \
+        --browserstack.app "./WikipediaSample.apk" \
+        --browserstack.buildName="Android Release Build" \
+        --browserstack.projectName="Android Release Regression Testing" \
+        --browserstack.logLevel="debug" \
+        --browserstack.testObservability="true"
 
     # Step 8: Stop BrowserStack Local Tunnel
     - name: Stop BrowserStack Local Tunnel
