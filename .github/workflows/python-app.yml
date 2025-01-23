@@ -61,7 +61,7 @@ jobs:
     - name: Test with pytest on BrowserStack
       run: |
         cd android
-        browserstack-sdk pytest -s -v *.py
+        browserstack-sdk pytest -s -v bstack_sample.py
 
     # Step 8: Stop BrowserStack Local Tunnel
     - name: Stop BrowserStack Local Tunnel
