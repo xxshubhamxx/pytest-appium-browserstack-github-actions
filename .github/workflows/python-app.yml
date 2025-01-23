@@ -60,7 +60,8 @@ jobs:
     # Step 7: Run tests with pytest using pytest.ini
     - name: Run tests with pytest on BrowserStack
       run: |
-        pipenv run pytest --log-file=pytest_log.txt --log-cli-level=ERROR
+        cd android
+        pipenv run browserstack-sdk pytest --log-file=pytest_log.txt --log-cli-level=ERROR
 
     # Step 8: Stop BrowserStack Local Tunnel
     - name: Stop BrowserStack Local Tunnel
