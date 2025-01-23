@@ -49,6 +49,8 @@ jobs:
       with:
         username: ${{ secrets.BROWSERSTACK_USERNAME }}
         access-key: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+        build-name: 'REPO_NAME'
+        project-name: 'REPO_NAME'
 
     # Step 6: Start BrowserStack Local Tunnel
     - name: Start BrowserStack Local Tunnel
