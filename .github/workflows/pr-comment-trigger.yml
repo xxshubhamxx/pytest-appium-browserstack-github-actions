@@ -3,34 +3,8 @@ name: Trigger Python Application Workflow
 on:
   issue_comment:
     types: [created]
-
+  
 jobs:
-  trigger-workflow:
-    runs-on: ubuntu-latest
-    if: > 
-      ${{ github.event.issue.pull_request && github.event.comment.body == 'RUN_TESTS' }}
-
-    steps:
-      - name: Trigger Python Application Workflow
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const workflow = 'python-app.yml';
-            const branch = context.payload.issue.pull_request?.head?.ref || 'main';
-            const owner = context.repo.owner;
-            const repo = context.repo.repo;
-
-            if (!branch) {
-              throw new Error('Branch name is undefined. Cannot trigger workflow.');
-            }
-
-            console.log(`Triggering workflow: ${workflow} on branch: ${branch}`);
-            
-            await github.rest.actions.createWorkflowDispatch({
-              owner,
-              repo,
-              workflow_id: workflow,
-              ref: branch
-            });
-            
-            console.log(`Workflow dispatched successfully on branch: ${branch}`);
+  rerun-tests-job:
+    if: contains(github.event.comment.body, 'run workflow')
+    uses: ./.github/workflows/python-app.yml
