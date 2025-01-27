@@ -7,4 +7,8 @@ on:
 jobs:
   rerun-tests-job:
     if: contains(github.event.comment.body, 'run workflow')
-    uses: ./.github/workflows/python-app.yml
+    steps:
+      - name: Trigger Python Application Workflow
+        uses: ./.github/workflows/python-app.yml
+        with:
+          branch: ${{ github.event.issue.pull_request.head.ref }} 
