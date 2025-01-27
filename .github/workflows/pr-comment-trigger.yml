@@ -27,4 +27,4 @@ jobs:
               ref: ref
             });
 
-            console.log(`Triggered workflow: ${workflow} on ref: ${ref}`);
+            # console.log(`Triggered workflow: ${workflow} on ref: ${ref}`);
