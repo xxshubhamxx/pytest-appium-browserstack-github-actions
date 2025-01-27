@@ -6,22 +6,25 @@ on:
 
 jobs:
   trigger-workflow:
-    if: ${{ github.event.comment.body == 'RUN_TESTS' }} # Checks if comment is RUN_TESTS
     runs-on: ubuntu-latest
+    if: > 
+      ${{ github.event.issue.pull_request && github.event.comment.body == 'RUN_TESTS' }}
 
     steps:
       - name: Trigger Python Application Workflow
         uses: actions/github-script@v6
         with:
           script: |
-            const workflow = 'python-app.yml'; // Replace with your workflow file name
-            const ref = context.payload.issue.pull_request
-              ? context.payload.issue.pull_request.head.ref
-              : 'main';
+            const workflow = 'python-app.yml';
+            const ref = context.payload.issue.pull_request.head.ref;
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+
             await github.rest.actions.createWorkflowDispatch({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              workflow_id: `${workflow}.yml`,
-              ref: ref // Use the PR branch or fallback to main
+              owner,
+              repo,
+              workflow_id: workflow,
+              ref: ref
             });
+
             console.log(`Triggered workflow: ${workflow} on ref: ${ref}`);
