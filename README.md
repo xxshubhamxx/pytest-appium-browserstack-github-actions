@@ -100,4 +100,3 @@ Open `browserstack.yml` file in `android` folder for Android and `ios` folder fo
     ```
 
 - You can access the test execution results, and debugging information such as video recording, network logs on [App Automate dashboard](https://app-automate.browserstack.com/dashboard)
-
