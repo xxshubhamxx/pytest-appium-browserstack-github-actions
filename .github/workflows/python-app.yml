@@ -67,12 +67,12 @@ jobs:
         BROWSERSTACK_TEST_OBSERVABILITY="true" \
         BROWSERSTACK_APP="./WikipediaSample.apk" \
         BROWSERSTACK_BUILD_IDENTIFIER="#${{ github.run_number }}" \
-        BROWSERSTACK_PARALLELS_PER_PLATFORM="2" \
+        BROWSERSTACK_PARALLELS_PER_PLATFORM="1" \
         BROWSERSTACK_LOCAL="false" \
         BROWSERSTACK_LOCAL_IDENTIFIER="" \
         BROWSERSTACK_RERUN_TESTS="false" \
         BROWSERSTACK_AUTOMATION="true" \
-        pipenv run browserstack-sdk pytest --log-file=pytest_log.txt --log-cli-level=ERROR --reruns 2
+        pipenv run browserstack-sdk pytest --log-file=pytest_log.txt --log-cli-level=ERROR
 
     # Step 8: Stop BrowserStack Local Tunnel
     - name: Stop BrowserStack Local Tunnel

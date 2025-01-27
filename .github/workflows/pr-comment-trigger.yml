@@ -16,7 +16,7 @@ jobs:
         with:
           script: |
             const workflow = 'python-app.yml';
-            const ref = context.payload.issue.pull_request.head.ref;
+            const branch = context.payload.issue.pull_request.head.ref;
             const owner = context.repo.owner;
             const repo = context.repo.repo;
 
@@ -24,7 +24,7 @@ jobs:
               owner,
               repo,
               workflow_id: workflow,
-              ref: ref
+              ref: branch
             });
 
-            # console.log(`Triggered workflow: ${workflow} on ref: ${ref}`);
+            console.log(`Triggered workflow: ${workflow} on branch: ${branch}`);
