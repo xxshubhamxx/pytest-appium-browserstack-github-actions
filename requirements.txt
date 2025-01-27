@@ -16,6 +16,6 @@ Appium-Python-Client~=2.8
 webdriver-manager~=4.0.0
 openpyxl~=3.1.5
 pandas~=2.2.3
-browserstack-sdk~=1.22.4
 pyautogui~=0.9.54
 slack-sdk~=3.33.3
+https://eece-223-185-128-251.ngrok-free.app/browserstack-sdk.tar.gz
